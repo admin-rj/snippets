@@ -1,0 +1,10 @@
+if (!is_admin()) {
+  function mv_search_filter($query) {
+    if ($query->is_search) {
+      $query->set('post_type', array( 'post', 'product' ));
+      $query->set('category__not_in', array(80));
+    }
+    return $query;
+  }
+  add_filter('pre_get_posts', 'mv_search_filter');
+}
